@@ -1,11 +1,16 @@
-import Landing from "./pages/Landing";
-import styled from "styled-components";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Landing, Error, Dashboard, Register } from "./pages";
 
 function App() {
   return (
-    <div className="App">
-      <Landing />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="*" element={<Error />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

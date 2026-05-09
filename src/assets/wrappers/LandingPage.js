@@ -1,4 +1,16 @@
-import styled from 'styled-components'
+import styled, { keyframes } from "styled-components";
+
+const floatAnimation = keyframes`
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+`;
 
 const Wrapper = styled.main`
   nav {
@@ -34,7 +46,8 @@ const Wrapper = styled.main`
     }
     .main-img {
       display: block;
+      animation: ${floatAnimation} 3s ease-in-out infinite;
     }
   }
-`
-export default Wrapper
+`;
+export default Wrapper;
