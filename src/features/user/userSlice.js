@@ -1,9 +1,22 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isLoading: false,
   user: null,
 };
+
+export const registerUser = createAsyncThunk(
+  "user/registerUser",
+  async (user, thunkAPI) => {
+    console.log(user);
+    return user;
+  },
+);
+
+export const loginUser = createAsyncThunk("user/loginUser", async (user, thunkAPI) => {
+  console.log(user);
+  return user;
+});
 
 const userSlice = createSlice({
   name: "user",
