@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Wrapper from "../assets/wrappers/Navbar";
 import { FaAlignLeft, FaUserCircle, FaCaretDown } from "react-icons/fa";
 import Logo from "./Logo";
-import { toggleSidebar } from "../features/user/userSlice";
+import { logoutUser, toggleSidebar } from "../features/user/userSlice";
 import { useState } from "react";
 
 function Navbar() {
@@ -39,7 +39,7 @@ function Navbar() {
               type="button"
               className="dropdown-btn"
               onClick={() => {
-                console.log("dropdown-btn");
+                dispatch(logoutUser());
                 setShowLogout(false);
               }}
             >
