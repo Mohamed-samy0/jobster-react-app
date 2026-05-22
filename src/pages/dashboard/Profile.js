@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { FormRow } from "../../components";
 import Wrapper from "../../assets/wrappers/DashboardFormPage";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { updateUser } from "../../features/user/userSlice";
 
 function Profile() {
   const { user, isLoading } = useSelector((store) => store.user);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const [userData, setUserData] = useState({
     name: user?.name || "",
@@ -22,6 +23,7 @@ function Profile() {
       toast.error("Please fill out all fields");
       return;
     }
+    dispatch(updateUser(userData));
   };
 
   const handleChange = (e) => {
