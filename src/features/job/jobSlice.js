@@ -1,4 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import customFetch from "../../utils/axios";
+import { logoutUser } from "../user/userSlice";
 
 const initialState = {
   isLoading: false,
@@ -12,6 +14,24 @@ const initialState = {
   isEditing: false,
   editJobId: "",
 };
+
+export const createJob = createAsyncThunk("job/createJob", async (job, thunkAPI) => {
+  try {
+    const resp = await customFetch.post("/jobs", job, {
+      headers: {
+        authorization: `Bearer ${thunkAPI.getState().user.user.token}`,
+      },
+    });
+    thunkAPI.dispatch(clearValues());
+    return resp.data;
+  } catch (error) {
+    if (error.response.status === 401) {
+      thunkAPI.dispatch(logoutUser());
+      return thunkAPI.rejectWithValue("Unauthorized! Logging Out...");
+    }
+    return thunkAPI.rejectWithValue(error.response?.data?.msg);
+  }
+});
 
 const jobSlice = createSlice({
   name: "job",
