@@ -1,4 +1,4 @@
-import { FormRow } from "../../components";
+import { FormRow, FormRowSelect } from "../../components";
 import Wrapper from "../../assets/wrappers/DashboardFormPage";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
@@ -10,10 +10,10 @@ function AddJob() {
     company,
     jobLocation,
     isEditing,
-    // jobType,
-    // jobTypeOptions,
-    // status,
-    // statusOptions,
+    jobType,
+    jobTypeOptions,
+    status,
+    statusOptions,
     // editJobId,
   } = useSelector((store) => store.job);
   // const dispatch = useDispatch();
@@ -60,9 +60,20 @@ function AddJob() {
             handleChange={handleJobInput}
           />
           {/* job status */}
-
+          <FormRowSelect
+            name="status"
+            value={status}
+            handleChange={handleJobInput}
+            list={statusOptions}
+          />
           {/* job type */}
-
+          <FormRowSelect
+            name="jobType"
+            labelText="job type"
+            value={jobType}
+            handleChange={handleJobInput}
+            list={jobTypeOptions}
+          />
           {/* btn container */}
           <div className="btn-container">
             <button
