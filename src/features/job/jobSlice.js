@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import customFetch from "../../utils/axios";
 import { logoutUser } from "../user/userSlice";
+import { toast } from "react-toastify";
 
 const initialState = {
   isLoading: false,
@@ -43,6 +44,20 @@ const jobSlice = createSlice({
     clearValues: () => {
       return initialState;
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(createJob.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(createJob.fulfilled, (state) => {
+        state.isLoading = false;
+        toast.success("Job Created");
+      })
+      .addCase(createJob.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        toast.error(payload);
+      });
   },
 });
 
