@@ -3,6 +3,7 @@ import Wrapper from "../../assets/wrappers/DashboardFormPage";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { clearValues, handleChange, createJob } from "../../features/job/jobSlice";
+import { useEffect } from "react";
 
 function AddJob() {
   const {
@@ -17,6 +18,7 @@ function AddJob() {
     statusOptions,
     // editJobId,
   } = useSelector((store) => store.job);
+  const { user } = useSelector((store) => store.user);
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
@@ -33,6 +35,15 @@ function AddJob() {
     const value = e.target.value;
     dispatch(handleChange({ name, value }));
   };
+
+  useEffect(() => {
+    dispatch(
+      handleChange({
+        name: "jobLocation",
+        value: user.location,
+      }),
+    );
+  }, [dispatch, user.location]);
 
   return (
     <Wrapper>
