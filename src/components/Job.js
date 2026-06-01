@@ -1,9 +1,13 @@
 import { useDispatch } from "react-redux";
 import Wrapper from "../assets/wrappers/Job";
 import { Link } from "react-router-dom";
+import JobInfo from "./JobInfo";
+import { FaBriefcase, FaCalendar, FaLocationArrow } from "react-icons/fa";
+import moment from "moment";
 
 function Job({ _id, position, company, jobLocation, jobType, status, createdAt }) {
   const dispatch = useDispatch();
+  const date = moment(createdAt).format("MMM Do, YYYY");
   return (
     <Wrapper>
       <header>
@@ -15,7 +19,9 @@ function Job({ _id, position, company, jobLocation, jobType, status, createdAt }
       </header>
       <div className="content">
         <div className="content-center">
-          <h4>more content</h4>
+          <JobInfo icon={<FaLocationArrow />} text={jobLocation} />
+          <JobInfo icon={<FaCalendar />} text={date} />
+          <JobInfo icon={<FaBriefcase />} text={jobType} />
           <div className={`status ${status}`}>{status}</div>
         </div>
       </div>
