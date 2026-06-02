@@ -3,6 +3,7 @@ import customFetch from "../../utils/axios";
 import { logoutUser } from "../user/userSlice";
 import { toast } from "react-toastify";
 import { getUserFromLocalStorage } from "../../utils/localStorage";
+import { getAllJobs, hideLoading, showLoading } from "../allJobs/allJobsSlice";
 
 const initialState = {
   isLoading: false,
@@ -35,6 +36,26 @@ export const createJob = createAsyncThunk("job/createJob", async (job, thunkAPI)
   }
 });
 
+export const deleteJob = createAsyncThunk("job/deleteJob", async (jobId, thunkAPI) => {
+  thunkAPI.dispatch(showLoading());
+  try {
+    const resp = await customFetch.delete(`/jobs/${jobId}`, {
+      headers: {
+        authorization: `Bearer ${thunkAPI.getState().user.user.token}`,
+      },
+    });
+    thunkAPI.dispatch(getAllJobs());
+    return resp.data.msg;
+  } catch (error) {
+    thunkAPI.dispatch(hideLoading());
+    if (error.response.status === 401) {
+      thunkAPI.dispatch(logoutUser());
+      return thunkAPI.rejectWithValue("Unauthorized! Logging Out...");
+    }
+    return thunkAPI.rejectWithValue(error.response?.data?.msg);
+  }
+});
+
 const jobSlice = createSlice({
   name: "job",
   initialState,
@@ -57,6 +78,12 @@ const jobSlice = createSlice({
       })
       .addCase(createJob.rejected, (state, { payload }) => {
         state.isLoading = false;
+        toast.error(payload);
+      })
+      .addCase(deleteJob.fulfilled, (state, { payload }) => {
+        toast.success(payload);
+      })
+      .addCase(deleteJob.rejected, (state, { payload }) => {
         toast.error(payload);
       });
   },

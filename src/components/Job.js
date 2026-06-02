@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import JobInfo from "./JobInfo";
 import { FaBriefcase, FaCalendar, FaLocationArrow } from "react-icons/fa";
 import moment from "moment";
+import { deleteJob } from "../features/job/jobSlice";
 
 function Job({ _id, position, company, jobLocation, jobType, status, createdAt }) {
   const dispatch = useDispatch();
@@ -37,7 +38,7 @@ function Job({ _id, position, company, jobLocation, jobType, status, createdAt }
           <button
             type="button"
             className="btn delete-btn"
-            onClick={() => console.log("delete")}
+            onClick={() => dispatch(deleteJob(_id))}
           >
             Delete
           </button>
