@@ -37,13 +37,15 @@ function AddJob() {
   };
 
   useEffect(() => {
-    dispatch(
-      handleChange({
-        name: "jobLocation",
-        value: user.location,
-      }),
-    );
-  }, [dispatch, user.location]);
+    if (!isEditing) {
+      dispatch(
+        handleChange({
+          name: "jobLocation",
+          value: user.location,
+        }),
+      );
+    }
+  }, [dispatch, isEditing, user.location]);
 
   return (
     <Wrapper>
