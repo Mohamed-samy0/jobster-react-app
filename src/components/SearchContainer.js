@@ -23,16 +23,20 @@ function SearchContainer() {
   const debounce = () => {
     let timeoutID;
     return (e) => {
-      setLocalSearch(e.target.value);
+      const name = e.target.name;
+      const value = e.target.value;
+      setLocalSearch(value);
       clearTimeout(timeoutID);
       timeoutID = setTimeout(() => {
-        dispatch(handleChange({ name: e.target.name, value: e.target.value }));
+        dispatch(handleChange({ name, value }));
       }, 1000);
     };
   };
-  const optimizedDebounce = useMemo(() => debounce(), 
-  // eslint-disable-next-line
-  []);
+  const optimizedDebounce = useMemo(
+    () => debounce(),
+    // eslint-disable-next-line
+    [],
+  );
   return (
     <Wrapper>
       <form className="form">

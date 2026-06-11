@@ -1,9 +1,9 @@
-import axois from "axios";
+import axios from "axios";
 import { getUserFromLocalStorage } from "./localStorage";
 import { clearStore } from "../features/user/userSlice";
 
-const customFetch = axois.create({
-  baseURL: "https://redux-toolkit-jobster-api-server.onrender.com/api/v1",
+const customFetch = axios.create({
+  baseURL: process.env.REACT_APP_API_URL,
 });
 customFetch.interceptors.request.use((config) => {
   const user = getUserFromLocalStorage();
