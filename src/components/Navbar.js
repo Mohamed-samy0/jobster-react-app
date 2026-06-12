@@ -27,6 +27,9 @@ function Navbar() {
           <h3 className="logo-text">dashboard</h3>
         </div>
         <div className="btn-container">
+          <button className="toggle" onClick={() => dispatch(toggleTheme())}>
+            {theme === "light-theme" ? <BsFillMoonFill /> : <BsFillSunFill />}
+          </button>
           <button
             type="button"
             className="btn"
@@ -50,9 +53,6 @@ function Navbar() {
           </div>
         </div>
       </div>
-        <button className="btn toggle" onClick={() => dispatch(toggleTheme())}>
-          {theme === "light-theme" ? <BsFillMoonFill /> : <BsFillSunFill />}
-        </button>
     </Wrapper>
   );
 }

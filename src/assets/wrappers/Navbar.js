@@ -20,15 +20,13 @@ const Wrapper = styled.nav`
   .toggle {
     background: transparent;
     border-color: transparent;
-    width: 35px;
-    height: 35px;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
-    margin-left: 10px;
     display: grid;
     place-items: center;
     cursor: pointer;
     transition: var(--transition);
-    margin-right: 1rem;
     color: var(--grey-800);
   }
   .toggle:hover {
@@ -36,7 +34,7 @@ const Wrapper = styled.nav`
     color: var(--primary-500);
   }
   .toggle svg {
-    font-size: 1.5rem;
+    font-size: 1.15rem;
   }
   .toggle-btn {
     background: transparent;
@@ -50,6 +48,9 @@ const Wrapper = styled.nav`
   background: var(--white);
   .btn-container {
     position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
   }
   .btn {
     display: flex;
@@ -63,11 +64,11 @@ const Wrapper = styled.nav`
   .dropdown {
     position: absolute;
     top: 40px;
-    left: 0;
-    width: 100%;
+    right: 0;
+    width: 77%;
     background: var(--primary-100);
     box-shadow: var(--shadow-2);
-    padding: 0.5rem;
+    padding: 0.2rem;
     text-align: center;
     visibility: hidden;
     border-radius: var(--borderRadius);
@@ -99,6 +100,34 @@ const Wrapper = styled.nav`
     }
     .logo-text {
       display: block;
+    }
+  }
+  @media (max-width: 576px) {
+    .nav-center {
+      width: 95vw;
+    }
+    .btn-container {
+      gap: 0.5rem;
+    }
+    .btn {
+      padding: 0.25rem 0.5rem;
+      font-size: 0.85rem;
+    }
+    .btn svg {
+      font-size: 1rem;
+    }
+    .toggle-btn {
+      font-size: 1.4rem;
+    }
+    .dropdown {
+      top: 35px;
+      left: auto;
+      right: 0;
+      width: 100px;
+      padding: 0.25rem;
+    }
+    .dropdown-btn {
+      font-size: 0.85rem;
     }
   }
 `;
