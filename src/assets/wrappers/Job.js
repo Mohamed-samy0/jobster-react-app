@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const Wrapper = styled.article`
   background: var(--white);
@@ -82,6 +82,9 @@ const Wrapper = styled.article`
   }
   footer {
     margin-top: 1rem;
+  }
+  .actions {
+    padding: 0 0 20px 15px;
   }
   .edit-btn,
   .delete-btn {
