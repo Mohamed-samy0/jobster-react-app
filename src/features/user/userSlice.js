@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import {
   addUserToLocalStorage,
+  getThemeFromLocalStorage,
   getUserFromLocalStorage,
   removeUserFromLocalStorage,
 } from "../../utils/localStorage";
@@ -16,6 +17,7 @@ const initialState = {
   isLoading: false,
   isSidebarOpen: false,
   user: getUserFromLocalStorage(),
+  theme: getThemeFromLocalStorage(),
 };
 
 export const registerUser = createAsyncThunk(
@@ -49,6 +51,12 @@ const userSlice = createSlice({
       if (payload) {
         toast.success(payload);
       }
+    },
+    toggleTheme: (state) => {
+      const newTheme = state.theme === "light-theme" ? "dark-theme" : "light-theme";
+      state.theme = newTheme;
+      document.documentElement.className = newTheme;
+      localStorage.setItem("theme", newTheme);
     },
   },
   extraReducers: (builder) => {
@@ -103,6 +111,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { toggleSidebar, logoutUser } = userSlice.actions;
+export const { toggleSidebar, logoutUser, toggleTheme } = userSlice.actions;
 
 export default userSlice.reducer;

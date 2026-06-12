@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 const Wrapper = styled.nav`
   height: var(--nav-height);
@@ -16,6 +16,27 @@ const Wrapper = styled.nav`
     width: 90vw;
     align-items: center;
     justify-content: space-between;
+  }
+  .toggle {
+    background: transparent;
+    border-color: transparent;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-left: 10px;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-right: 1rem;
+    color: var(--grey-800);
+  }
+  .toggle:hover {
+    background: var(--primary-100);
+    color: var(--primary-500);
+  }
+  .toggle svg {
+    font-size: 1.5rem;
   }
   .toggle-btn {
     background: transparent;
@@ -80,5 +101,5 @@ const Wrapper = styled.nav`
       display: block;
     }
   }
-`
-export default Wrapper
+`;
+export default Wrapper;

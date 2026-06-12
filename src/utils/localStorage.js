@@ -11,3 +11,9 @@ export const getUserFromLocalStorage = () => {
   const user = result ? JSON.parse(result) : null;
   return user;
 };
+
+export const getThemeFromLocalStorage = () => {
+  const theme = localStorage.getItem("theme") || "light-theme";
+  document.documentElement.className = theme;
+  return theme;
+};

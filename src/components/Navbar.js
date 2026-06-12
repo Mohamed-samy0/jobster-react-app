@@ -4,10 +4,12 @@ import { FaAlignLeft, FaUserCircle, FaCaretDown } from "react-icons/fa";
 import Logo from "./Logo";
 import { clearStore, toggleSidebar } from "../features/user/userSlice";
 import { useState } from "react";
+import { BsFillSunFill, BsFillMoonFill } from "react-icons/bs";
+import { toggleTheme } from "../features/user/userSlice";
 
 function Navbar() {
   const [showLogout, setShowLogout] = useState(false);
-  const { user } = useSelector((store) => store.user);
+  const { user, theme } = useSelector((store) => store.user);
   const dispatch = useDispatch();
 
   const toggle = () => {
@@ -48,6 +50,9 @@ function Navbar() {
           </div>
         </div>
       </div>
+        <button className="btn toggle" onClick={() => dispatch(toggleTheme())}>
+          {theme === "light-theme" ? <BsFillMoonFill /> : <BsFillSunFill />}
+        </button>
     </Wrapper>
   );
 }

@@ -321,3 +321,36 @@ ul {
 .Toastify__toast {
   text-transform: capitalize;
 }
+
+/* Dark Mode Variables*/
+
+.dark-theme {
+  --textColor: #f9fafb;
+  --grey-600: #d1d5db;
+  --grey-800: #e5e7eb;
+  --backgroundColor: #111827;
+  --white: #1f2937;
+
+  --grey-50: #101010;
+  --grey-100: #374151;
+  --grey-200: #4b5563;
+  --grey-400: #9ca3af;
+  --grey-900: #f3f4f6;
+
+  --shadow-2: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+
+  --primary-500: #60a5fa;
+}
+
+.dark-theme .btn-hipster {
+  background: var(--grey-100);
+  color: var(--textColor);
+}
+.dark-theme .form-row select,
+.dark-theme .form-row input {
+  color: var(--textColor);
+  background: var(--white);
+}
+.dark-theme .theme-btn {
+  color: var(--white);
+}
