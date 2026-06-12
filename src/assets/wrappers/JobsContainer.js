@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 const Wrapper = styled.section`
   margin-top: 4rem;
@@ -13,6 +13,16 @@ const Wrapper = styled.section`
     grid-template-columns: 1fr;
     row-gap: 2rem;
   }
+  .title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+
+  .title-container h5 {
+    margin-bottom: 0;
+  }
   @media (min-width: 992px) {
     .jobs {
       display: grid;
@@ -20,5 +30,5 @@ const Wrapper = styled.section`
       gap: 1rem;
     }
   }
-`
-export default Wrapper
+`;
+export default Wrapper;
