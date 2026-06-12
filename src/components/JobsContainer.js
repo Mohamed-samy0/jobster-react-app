@@ -9,6 +9,7 @@ import { downloadCSV } from "../utils/exportToCSV";
 import moment from "moment";
 import customFetch from "../utils/axios";
 import { toast } from "react-toastify";
+import { motion } from "framer-motion";
 
 function JobsContainer() {
   const {
@@ -75,8 +76,20 @@ function JobsContainer() {
         </button>
       </div>
       <div className="jobs">
-        {jobs.map((job) => {
-          return <Job key={job._id} {...job} />;
+        {jobs.map((job, index) => {
+          return (
+            <motion.div
+              key={job._id}
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.5,
+                delay: index * 0.1,
+              }}
+            >
+              <Job key={job._id} {...job} />;
+            </motion.div>
+          );
         })}
       </div>
       {numOfPages > 1 && <PageBtnContainer />}
